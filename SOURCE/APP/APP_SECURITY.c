@@ -75,6 +75,7 @@ u8 APP_u8VerifyDualLock(u8* A_u8EnteredPass, u8 A_u8DialValue)
 {
 	// LET THE enterd pass to be correct at first
 	u8 Local_u8PassIsCorrect = 1;
+
 	//A COUNTER
 	u8 Local_u8Iterator = 0;
 
@@ -88,7 +89,8 @@ u8 APP_u8VerifyDualLock(u8* A_u8EnteredPass, u8 A_u8DialValue)
 		}
 	}
 
-// if the dial and the pass are correct return 1 else 0
+
+	// if the dial and the pass are correct return 1 else 0
 	if ((Local_u8PassIsCorrect == 1) && (A_u8DialValue == CORRECT_DIAL_VALUE))
 	{
 		return 1;
