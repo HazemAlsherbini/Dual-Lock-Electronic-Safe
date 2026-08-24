@@ -8,4 +8,10 @@
 
 u8 APP_u8VerifyDualLock(u8* Local_pu8EnteredPass, u8 Local_u8DialValue);
 
+void APP_voidGetPasswordFromUser(u8* A_u8PasswordArray);
+
+void APP_voidDisplayWelcomeScreen(void);
+
+u8 APP_u8GetDialValue();
+
 #endif /* APP_SECURITY_H_ */
