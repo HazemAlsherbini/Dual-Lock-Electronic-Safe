@@ -9,15 +9,45 @@
 #define INCLUDE_MCAL_ADC_ADC_CFG_H_
 
 
-// ADC Channels Macros (Choosing the bit we read from)
-#define ADC_CHANNEL_0    0
-#define ADC_CHANNEL_1    1
-#define ADC_CHANNEL_2    2
-#define ADC_CHANNEL_3    3
-#define ADC_CHANNEL_4    4
-#define ADC_CHANNEL_5    5
-#define ADC_CHANNEL_6    6
-#define ADC_CHANNEL_7    7
+/*
+ * Voltage Reference Selection
+ * Options:
+ * 1- ADC_AREF      (External Reference)
+ * 2- ADC_AVCC      (5V from AVCC pin)
+ * 3- ADC_INTERNAL  (Internal 2.56V)
+ */
+typedef enum
+{
+	ADC_AREF = 0,
+	ADC_AVCC = 1,
+	ADC_RESERVED = 2,
+	ADC_INTERNAL= 3
+}ADC_VOLTAGE_REFERENCE;
+
+#define ADC_VREF   ADC_AVCC
+
+
+/*
+ * ADC Prescaler Selection
+ * Options:
+ * ADC_PRESCALER_2
+ * ADC_PRESCALER_4
+ * ADC_PRESCALER_8
+ * ADC_PRESCALER_16
+ * ADC_PRESCALER_32
+ * ADC_PRESCALER_64
+ * ADC_PRESCALER_128
+ */
+typedef enum
+{
+	ADC_PRESCALER_2 = 1,
+	ADC_PRESCALER_4 = 2,
+	ADC_PRESCALER_8 = 3,
+	ADC_PRESCALER_16 = 4,
+	ADC_PRESCALER_32 = 5,
+	ADC_PRESCALER_64 = 6,
+	ADC_PRESCALER_128 = 7
+}ADC_PRESCALAR;
 
 #define ADC_PRESCALER  ADC_PRESCALER_64
 
