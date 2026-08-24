@@ -96,7 +96,7 @@ void HLCD_voidGoToPos(LCD_ROWS A_LcdRowNo , LCD_COLS  A_LcdColNo)
 	switch(A_LcdRowNo)
 	{
 	case ROW1: HLCD_voidSendCommand(LCD_ROW1_ADDRESS + A_LcdColNo); break;
-	case ROW2: HLCD_voidSendCommand(LCD_ROW1_ADDRESS + A_LcdColNo); break;
+	case ROW2: HLCD_voidSendCommand(LCD_ROW2_ADDRESS + A_LcdColNo); break;
 	default: break;
 	}
 	_delay_ms(1);
