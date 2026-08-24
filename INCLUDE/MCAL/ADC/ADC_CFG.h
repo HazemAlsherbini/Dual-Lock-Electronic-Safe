@@ -18,6 +18,7 @@
 #define ADC_CHANNEL_5    5
 #define ADC_CHANNEL_6    6
 #define ADC_CHANNEL_7    7
+
 #define ADC_PRESCALER  ADC_PRESCALER_64
 
 #endif /* INCLUDE_MCAL_ADC_ADC_CFG_H_ */
