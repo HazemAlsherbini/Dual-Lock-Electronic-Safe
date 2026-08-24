@@ -17,6 +17,12 @@
 #include "../../INCLUDE/HAL/KEYPAD/KEYPAD_INTERFACE.h"
 #include "../../INCLUDE/HAL/KEYPAD/KEYPAD_PRIVATE.h"
 
+u8 Global_u8ArrOfKeyValues [ROW_NO][COL_NO] = {
+		{'1','2','3'},
+		{'4','5','6'},
+		{'7','8','9'},
+		{'*','0','#'}
+};
 
 u8 static G_u8RowsArr[ROW_NO] = KEYPAD_ROWS;
 u8 static G_u8ColsArr[COL_NO] = KEYPAD_COLS;
