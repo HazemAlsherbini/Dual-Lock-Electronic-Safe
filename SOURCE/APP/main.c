@@ -12,7 +12,7 @@
 #include "../../INCLUDE/MCAL/DIO/DIO_INTERFACE.h"
 #include "../../INCLUDE/MCAL/DIO/DIO_PRIVATE.h"
 #include "../../INCLUDE/MCAL/DIO/DIO_CFG.h"
-//#include <stdio.h>
+#include <stdio.h>
 #include <util/delay.h>
 
 int main(void)
