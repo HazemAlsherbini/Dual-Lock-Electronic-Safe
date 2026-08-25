@@ -5,7 +5,7 @@
 #include "../../INCLUDE/LIB/STD_TYPES.h"
 
 
-#define CORRECT_DIAL_VALUE     45
+#define CORRECT_DIAL_VALUE     0
 #define PASSWORD_LENGTH        4
 
 void APP_voidDisplayWelcomeScreen(void); //start of the program
