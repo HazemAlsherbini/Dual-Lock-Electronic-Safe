@@ -6,14 +6,14 @@
  */
 
 // Library Directives
-#include "../../INCLUDE/LIB/BIT_MATH.h"
-#include "../../INCLUDE/LIB/STD_TYPES.h"
+#include "../../../INCLUDE/LIB/BIT_MATH.h"
+#include "../../../INCLUDE/LIB/STD_TYPES.h"
 
 // DIO Directives
-#include "../../INCLUDE/MCAL/DIO/DIO_INTERFACE.h"
-#include "../../INCLUDE/HAL/MOTOR/MOTOR_CFG.h"
-#include "../../INCLUDE/HAL/MOTOR/MOTOR_INTERFACE.h"
-#include "../../INCLUDE/HAL/MOTOR/MOTOR_PRIVATE.h"
+#include "../../../INCLUDE/MCAL/DIO/DIO_INTERFACE.h"
+#include "../../../INCLUDE/HAL/MOTOR/MOTOR_CFG.h"
+#include "../../../INCLUDE/HAL/MOTOR/MOTOR_INTERFACE.h"
+#include "../../../INCLUDE/HAL/MOTOR/MOTOR_PRIVATE.h"
 
 void HMOTOR_voidOpenSafe(void)
 {

@@ -24,7 +24,7 @@
 #define COL1  		   PIN5
 #define COL2   		   PIN6
 
-#define KEYPAD_ROWS   {ROW0,ROW1,ROW2,ROW3}
+#define KEYPAD_ROWS   {ROW0,ROW1,ROW2,ROW3} //OUT
 #define KEYPAD_COLS   {COL0,COL1,COL2}
 
 #define KEYPAD_DEBOUNCE_DELAY 30 //ms

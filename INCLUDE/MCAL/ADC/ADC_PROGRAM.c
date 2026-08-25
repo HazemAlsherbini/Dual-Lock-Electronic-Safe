@@ -6,13 +6,14 @@
  */
 
 
-#include "../../INCLUDE/LIB/STD_TYPES.h"
-#include "../../INCLUDE/LIB/BIT_MATH.h"
+// Library Directives
+#include "../../../INCLUDE/LIB/BIT_MATH.h"
+#include "../../../INCLUDE/LIB/STD_TYPES.h"
 
 // ADC Directives
-#include "../../INCLUDE/MCAL/ADC/ADC_CFG.h"
-#include "../../INCLUDE/MCAL/ADC/ADC_INTERFACE.h"
-#include "../../INCLUDE/MCAL/ADC/ADC_PRIVATE.h"
+#include "../../../INCLUDE/MCAL/ADC/ADC_CFG.h"
+#include "../../../INCLUDE/MCAL/ADC/ADC_INTERFACE.h"
+#include "../../../INCLUDE/MCAL/ADC/ADC_PRIVATE.h"
 
 void MADC_voidInit(void)
 {
