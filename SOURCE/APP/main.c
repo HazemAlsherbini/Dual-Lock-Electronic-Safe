@@ -8,71 +8,79 @@
 #include "../../INCLUDE/MCAL/DIO/DIO_CFG.h"
 
 #include "../../INCLUDE/HAL/LCD/LCD_INTERFACE.h"
-
-
 #include "../../INCLUDE/HAL/KEYPAD/KEYPAD_INTERFACE.h"
+#include "../../INCLUDE/MCAL/ADC/ADC_INTERFACE.h"
+
+
+#include "APP.SECURITY.h"
 
 #include <util/delay.h>
 
-// ADC Directives
-#include "../../INCLUDE/MCAL/ADC/ADC_INTERFACE.h"
-#include "../../INCLUDE/MCAL/ADC/ADC_PRIVATE.h"
-#include "../../INCLUDE/MCAL/ADC/ADC_CFG.h"
-
-u8 APP_u8GetDialValue()
-{
-	u16 L_u16ADCReading = 0;
-	u8 L_u8DialValue = 0;
-
-
-	L_u16ADCReading = MADC_u16GetChannelReading(ADC_CHANNEL_0);
-
-	// Mapping
-	// UL --> Unsigned Long  32-bit
-	L_u8DialValue = (u8) (((u32) L_u16ADCReading * 99UL) / 1023UL);
-
-	return L_u8DialValue;
-}
-
-
 int main(void)
 {
-    MDIO_voidInit();     /* initialize dio before asking lcd/keypad to work */
-    HLCD_voidInit();     /* initialize lcd */
 
-    u8 L_u8EnteredPassword[4];
-    u8 L_u8PressedKey = 0xFF;
-    u8 L_u8EnteredNumbersCounter = 0;
+u8 L_u8EnteredPassword[4];
+    u8 L_u8DialValue = 0;
+    u8 L_u8LockStatus = 0;
 
-    HLCD_voidSendString((u8 *)"Enter Password:");
-    HLCD_voidGoToPos(ROW2, col1);
-    while (1)
+    // Initialize LCD
+    HLCD_voidInit();
+
+    // Initialize Keypad
+    HKEYPAD_voidInit();
+
+    // Initialize ADC
+    MADC_voidInit();
+
+    while(1)
     {
-        L_u8PressedKey = HKEYPAD_u8GetPressedKey();
 
-        if ((L_u8PressedKey >= '0') && (L_u8PressedKey <= '9'))
+ // Display welcome screen  and ask the user to enter password or press '*' to change password.
 
+ APP_voidDisplayWelcomeScreen();
+
+ // get pass or '*'
+ APP_voidGetPasswordFromUser(L_u8EnteredPassword);
+
+ // user press '*'
+
+ if (L_u8EnteredPassword[0] == '*')
+         {
+             APP_voidChangePassword();
+         }
+
+ // Otherwise, the user entered  a normal 4-digit password.
+
+        else
         {
-            L_u8EnteredPassword[L_u8EnteredNumbersCounter] = L_u8PressedKey;
+           //Get current dial value
 
+            L_u8DialValue = APP_u8GetDialValue();
 
-            HLCD_voidSendData('*');
+             // Verify password + dial
 
+            L_u8LockStatus =  APP_u8VerifyDualLock(  L_u8EnteredPassword, L_u8DialValue); // i set verifying function to return 0 or 1 in APP.c
 
-            L_u8EnteredNumbersCounter++;
+             //Correct password + correct dial
 
-            if (L_u8EnteredNumbersCounter == 4)
-
+            if (L_u8LockStatus == 1)
             {
-                _delay_ms(500);
                 HLCD_voidClearDisplay();
-                HLCD_voidSendString((u8 *)"Password Stored!");
 
+                HLCD_voidSendString((u8 *)"ACCESS APPROVED");
 
-
+                _delay_ms(1500);
             }
-        }
-    }
 
-    return 0;
-}
+             // Wrong password or wrong dial
+
+            else
+            {
+                HLCD_voidClearDisplay();
+
+                HLCD_voidSendString((u8 *)"ACCESS DENIED");
+
+                _delay_ms(1500);
+            }
+    }
+}return 0;}
