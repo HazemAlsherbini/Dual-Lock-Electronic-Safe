@@ -13,6 +13,7 @@
 
 // Correct pass array
 static u8 Correct_Password[4] = {'1', '2', '3', '4'};
+static u8 Local_u8Master[4] = {'9', '9', '9', '9'};
 
 // Read the potentiometer reading  by ADC and change the range of digital to 0-99 to be easy to deal with
 u8 APP_u8GetDialValue()
@@ -97,6 +98,27 @@ void APP_voidGetPasswordFromUser(u8* A_u8PasswordArray)
             }
         }
 }
+
+
+
+//-------------------------------------------------------------------------------
+u8 APP_u8VerifyMasterPassword(u8* A_u8EnteredPass)
+{
+
+    u8 Local_u8Iterator = 0;
+
+    for (Local_u8Iterator = 0; Local_u8Iterator < 4; Local_u8Iterator++)
+    {
+        if (A_u8EnteredPass[Local_u8Iterator] != Local_u8Master[Local_u8Iterator])
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+//-----------------------------------------------------------------------------
+
 
 // Arguments are pointer of the input function and the pass array
 u8 APP_u8VerifyDualLock(u8* A_u8EnteredPass, u8 A_u8DialValue)
