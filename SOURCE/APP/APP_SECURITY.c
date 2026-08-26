@@ -8,11 +8,14 @@
 #include "../../INCLUDE/MCAL/ADC/ADC_INTERFACE.h"
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "APP_SECURITY.h"
 #include <util/delay.h>
 
 // Correct pass array
 static u8 Correct_Password[4] = {'1', '2', '3', '4'};
+// Master Code From The Manufacturer
+static u8 Local_u8Master[4] = {'9', '9', '9', '9'};
 
 // Read the potentiometer reading  by ADC and change the range of digital to 0-99 to be easy to deal with
 u8 APP_u8GetDialValue()
@@ -49,16 +52,25 @@ void APP_voidDisplayWelcomeScreen(void)
 
     HLCD_voidClearDisplay();
 
-    HLCD_voidSendString((u8 *)"Enter Password:");
+
 
 }
 
 // Get Password From User
-void APP_voidGetPasswordFromUser(u8* A_u8PasswordArray)
+void APP_voidGetPasswordFromUser(u8* A_u8PasswordArray , bool ChangePass )
 {
     u8 L_u8PressedKey = KEYPAD_NOT_PRESSED; // No pressed key right now
     u8 L_u8EnteredNumbersCounter = 0;
 
+    HLCD_voidClearDisplay();
+    if(ChangePass)
+    {
+        HLCD_voidSendString((u8 *)"Old Password:");
+    }
+    else
+    {
+    	HLCD_voidSendString((u8 *)"Enter Password:");
+    }
     HLCD_voidGoToPos(ROW2, col1);
 
     while (L_u8EnteredNumbersCounter < 4)
@@ -95,7 +107,29 @@ void APP_voidGetPasswordFromUser(u8* A_u8PasswordArray)
                     _delay_ms(700);
                 }
             }
+            else if ((L_u8PressedKey == '#'))
+            {
+            	APP_voidGetPasswordFromUser(A_u8PasswordArray , false);
+            	return;
+            }
         }
+}
+
+// Verify Master Code
+u8 APP_u8VerifyMasterPassword(u8* A_u8EnteredPass)
+{
+
+    u8 Local_u8Iterator = 0;
+
+    for (Local_u8Iterator = 0; Local_u8Iterator < 4; Local_u8Iterator++)
+    {
+        if (A_u8EnteredPass[Local_u8Iterator] != Local_u8Master[Local_u8Iterator])
+        {
+            return 0;
+        }
+    }
+
+    return 1;
 }
 
 // Arguments are pointer of the input function and the pass array
@@ -141,13 +175,7 @@ void APP_voidChangePassword(void)
 
      //Step 1:
      //Ask the user to enter the old password
-
-    HLCD_voidClearDisplay();
-    HLCD_voidSendString((u8 *)"Old Password:");
-
-    HLCD_voidGoToPos(ROW2, col1);
-
-    APP_voidGetPasswordFromUser(L_u8OldPassword);
+    APP_voidGetPasswordFromUser(L_u8OldPassword , true);
 
 
 
@@ -172,16 +200,16 @@ void APP_voidChangePassword(void)
     {
         HLCD_voidClearDisplay();
 
-        HLCD_voidSendString((u8 *)"Enter New Pass:");
-
-        _delay_ms(500);
-
+        HLCD_voidSendString((u8 *)"ENTER NEW PASS");
         HLCD_voidGoToPos(ROW2, col1);
+        HLCD_voidSendString((u8 *)"NEXT SCREEN");
+        _delay_ms(2000);
+
 
 
          // Enter the new password
 
-        APP_voidGetPasswordFromUser(L_u8NewPassword);// recieve new 4 numbers and store them in a new array
+        APP_voidGetPasswordFromUser(L_u8NewPassword , false);// recieve new 4 numbers and store them in a new array
 
 
 

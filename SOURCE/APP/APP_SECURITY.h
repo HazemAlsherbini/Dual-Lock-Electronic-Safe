@@ -10,9 +10,11 @@
 
 void APP_voidDisplayWelcomeScreen(void); //start of the program
 
-void APP_voidGetPasswordFromUser(u8* A_u8PasswordArray); //read the password from the user
+void APP_voidGetPasswordFromUser(u8* A_u8PasswordArray , bool ChangePass); //read the password from the user
 
 u8 APP_u8GetDialValue(); //read the dial value from the user (potentiometer) using ADC
+
+u8 APP_u8VerifyMasterPassword(u8* A_u8EnteredPass);
 
 u8 APP_u8VerifyDualLock(u8* Local_pu8EnteredPass, u8 Local_u8DialValue); // check the password and dialvalue
 
