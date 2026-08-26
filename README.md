@@ -14,6 +14,7 @@ The project is built using a professional Layered Embedded Architecture:
 * **LIB Layer:** Foundational utilities including `STD_TYPES` and `BIT_MATH` shared across all layers.
 
 ## ⚙️ Hardware Drivers & Features
+* **LCD Driver:** Configured in 8-bit mode for reliable and high-speed alphanumeric data transmission to the display.
 * **ADC Driver (Analog Dial):** Utilizes 10-bit resolution mapped and scaled from raw values into a Dial Value (0–99).
 * **Keypad Driver:** Implements Matrix Scanning with software debounce to eliminate contact noise and false triggers.
 * **DIO Driver:** Provides configurable pin direction and direct register access for all ports.
