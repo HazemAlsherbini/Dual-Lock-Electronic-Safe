@@ -12,12 +12,6 @@
 #include <util/delay.h>
 #include <stdbool.h>
 
-volatile u8 G_u8ForceCloseFlag = 0;
-
-void APP_voidCloseSafe(void)
-{
-	G_u8ForceCloseFlag = 1;
-}
 
 int main(void)
 {
