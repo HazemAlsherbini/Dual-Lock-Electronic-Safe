@@ -42,8 +42,8 @@ int main(void)
 	MDIO_voidSetPinValue(PORTA, PIN1, DIO_LOW);
 
     // Buzzer PIN
-    MDIO_voidSetPinDirection(PORTA, PIN3, DIO_OUTPUT);
-    MDIO_voidSetPinValue(PORTA, PIN3, DIO_LOW);
+    MDIO_voidSetPinDirection(PORTA, PIN2, DIO_OUTPUT);
+    MDIO_voidSetPinValue(PORTA, PIN2, DIO_LOW);
 
     //Alarm LED PIN
 	MDIO_voidSetPinDirection(PORTA, PIN4, DIO_OUTPUT);
@@ -55,7 +55,7 @@ int main(void)
 
     		while (L_u8ErrorCounter == 3)
     		{
-			MDIO_voidSetPinValue(PORTA, PIN3, DIO_HIGH);
+			MDIO_voidSetPinValue(PORTA, PIN2, DIO_HIGH);
 			MDIO_voidSetPinValue(PORTA, PIN4, DIO_HIGH);
 
 			HLCD_voidClearDisplay();
@@ -71,7 +71,7 @@ int main(void)
 
 			if (APP_u8VerifyMasterPassword(L_u8EnteredPassword) == 1)
 			{
-				MDIO_voidSetPinValue(PORTA, PIN3, DIO_LOW);
+				MDIO_voidSetPinValue(PORTA, PIN2, DIO_LOW);
 				MDIO_voidSetPinValue(PORTA, PIN4, DIO_LOW);
 				L_u8ErrorCounter = 0;
 
