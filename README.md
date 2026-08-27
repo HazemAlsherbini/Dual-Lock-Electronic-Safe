@@ -4,7 +4,7 @@
 This project is a robust embedded security system that combines digital keypad entry with analog dial verification for access control. Access is granted only when both conditions pass at the same moment — neither alone is sufficient.
 
 ## 🎥 Project Media & Demo
-* **Simulation & Source Code:** [Google Drive Folder](https://drive.google.com/drive/folders/1kBnYrckhnnTPxcow9zH2G4hqQN9piQcm?usp=drive_link)
+* **Simulation Video:** [Google Drive Folder](https://drive.google.com/drive/folders/1kBnYrckhnnTPxcow9zH2G4hqQN9piQcm?usp=drive_link)
 
 ## 🏗️ System Architecture
 The project is built using a professional Layered Embedded Architecture:
